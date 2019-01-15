@@ -6,6 +6,7 @@ import store from './store'
 import axios from 'axios'
 
 // axios拦截器
+/* eslint-disable no-unused-vars */
 import interceptor from './http-interceptor'
 
 Vue.config.productionTip = false

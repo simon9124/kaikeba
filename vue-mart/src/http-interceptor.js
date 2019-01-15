@@ -20,11 +20,11 @@ axios.interceptors.request.use(
 */
 axios.interceptors.response.use(
   response => {
-    if (response.states === 200) {
+    if (response.status === 200) {
       // response.states为200 -> 响应成功
       const data = response.data
       // 如果code是-1 -> 用户已登出/token已过期
-      if (data.code === -1) {
+      if (data.code == -1) {
         clearHandler()
       }
     }
