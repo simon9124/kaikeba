@@ -3,8 +3,15 @@ import './cube-ui'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import axios from 'axios'
+
+// axios拦截器
+import interceptor from './http-interceptor'
 
 Vue.config.productionTip = false
+
+// 全局注册axios
+Vue.prototype.$http = axios
 
 new Vue({
   router,
