@@ -34,6 +34,7 @@ export default {
               // usercheck: (val) => {
               //   return (resolve) => {
               //     this.$http.get('/api/check?username=' + val).then(res => {
+              //       console.log(res)
               //       resolve(res.code === 0)
               //     })
               //   }
