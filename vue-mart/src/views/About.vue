@@ -7,8 +7,22 @@
 <script>
 export default {
   created() {
-    // 登录授权过期
-    this.$http.get('/api/authapi')
+    this.init()
+  },
+  methods: {
+    init() {
+      // 登录授权过期
+      this.$http.get('/api/authapi').then((res) => {
+        if (res.data.code === -1) {
+          const toast = this.$createToast({
+            time: 2000,
+            txt: res.data.message,
+            type: 'error'
+          })
+          toast.show()
+        }
+      })
+    }
   },
 }
 </script>

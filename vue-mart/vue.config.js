@@ -104,10 +104,25 @@ module.exports = {
           } else {
             return res.json({
               code: -1,
-              data: '登录授权过期，请重新登录'
+              message: '登录授权过期，请重新登录'
             })
           }
+        })
 
+        // 用户名校验
+        app.get('/api/check', function (req, res) {
+          const username = req.query.username
+          if (username === 'simon') {
+            res.json({
+              code: 1,
+              message: '用户存在'
+            })
+          } else {
+            res.json({
+              code: 0,
+              message: '用户不存在'
+            })
+          }
 
         })
 

@@ -27,11 +27,24 @@ export default {
               placeholder: '请输入用户名'
             },
             rules: {
-              required: true
+              required: true,
+              type: 'string',
+              min: 3,
+              max: 15,
+              // usercheck: (val) => {
+              //   return (resolve) => {
+              //     this.$http.get('/api/check?username=' + val).then(res => {
+              //       resolve(res.code === 0)
+              //     })
+              //   }
+              // }
             },
             trigger: 'blur',
             messages: {
-              required: '用户名为必填项'
+              required: '用户名为必填项',
+              min: '用户名不得少于3个字符',
+              max: '用户名不得多于15个字符',
+              usercheck: '用户名不存在'
             }
           },
           {
