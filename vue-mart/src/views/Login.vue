@@ -66,11 +66,15 @@ export default {
     async handleLogin(e) {
       e.preventDefault();
       // 调用mock接口
-      const res = await this.$http.get('/api/login', {
-        params: {
-          username: this.model.username,
-          password: this.model.password
-        }
+      // const res = await this.$http.get('/api/login', {
+      //   params: {
+      //     username: this.model.username,
+      //     password: this.model.password
+      //   }
+      // })
+      const res = await this.$http.post('/api/login', {
+        username: this.model.username,
+        password: this.model.password
       })
       console.log(res);
 
@@ -80,7 +84,7 @@ export default {
         localStorage.setItem('token', token)
         this.$store.commit('setToken', token)
         // 重定向
-        const { redirect } = this.$route.query || '/';
+        const redirect = this.$route.query.redirect || '/';
         this.$router.push(redirect)
       } else {
         // 登录失败
