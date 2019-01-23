@@ -17,8 +17,16 @@
     <!-- cube-tab-bar -->
     <cube-tab-bar show-slider
                   v-model="selectLabel"
-                  :data="tabs"
-                  @change="changeHandler">
+                  @change="changeHandler"
+                  :data="tabs">
+      <!-- <cube-tab v-for="(item,i) in tabs"
+                :key="i"
+                :icon="item.icon"
+                :label="item.label">
+        <span>{{item.label}}</span>
+        <span class="badge"
+              v-if="showBadge(item.label)">{{cartTotal}}</span>
+      </cube-tab> -->
     </cube-tab-bar>
   </div>
 </template>
@@ -28,7 +36,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(['isLogin'])
+    ...mapGetters(['isLogin', 'cartTotal'])
   },
   data() {
     return {
@@ -71,6 +79,10 @@ export default {
     // tab切换
     changeHandler(val) {
       this.$router.push(val)
+    },
+    // 是否显示商品数量
+    showBadge(label) {
+      return label === 'Cart' && this.cartTotal > 0
     }
   },
 }

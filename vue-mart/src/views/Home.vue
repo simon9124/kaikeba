@@ -30,6 +30,7 @@
 <script>
 import GoodsList from '@/components/GoodsList.vue'
 
+// 中英文映射
 const labels = {
   fe: '前端',
   python: 'Python',
@@ -69,7 +70,7 @@ export default {
     showCat() {
       this.$refs.drawer.show()
     },
-    // 
+    // 选择商品分类
     selectHandler(val) {
       this.selectedKeys = [...val]
     }
@@ -83,6 +84,7 @@ export default {
       return ret
     },
     drawerList() {
+      // 中文映射
       return this.keys.map(v => {
         return {
           value: v,
