@@ -34,7 +34,6 @@ export default {
     addCart($event, item) {
       // 加购物车
       this.$store.commit('addCart', item);
-
       // 把点击事件派发出去
       this.$emit('addCart', $event.target)
     },

@@ -10,7 +10,6 @@
     </div> -->
 
     <!-- router-view -->
-    name="route-forward"
     <transition :name="transitionName">
       <router-view class="child-view" />
     </transition>
