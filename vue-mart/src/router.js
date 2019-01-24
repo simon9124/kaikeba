@@ -78,8 +78,10 @@ router.afterEach((to, from) => {
     // 后退操作
     History.pop()
     router.isBack = false
+    router.transitionName = 'route-back'
   } else {
     History.push(to.path)
+    router.transitionName = 'route-forward'
   }
 })
 
