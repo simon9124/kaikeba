@@ -11,6 +11,10 @@ import interceptor from './http-interceptor'
 
 Vue.config.productionTip = false
 
+// 全局引入Header.vue
+import KHeader from './components/Header.vue'
+Vue.component('k-header', KHeader)
+
 // 全局注册axios
 Vue.prototype.$http = axios
 

@@ -1,5 +1,9 @@
 <template>
   <div class="home">
+
+    <!-- 页头 -->
+    <k-header title="开课吧商城"></k-header>
+
     <!-- 轮播图 -->
     <cube-slide :data="slider"
                 :interval="5000">
@@ -22,7 +26,8 @@
     <cube-drawer ref="drawer"
                  title="请选择分类"
                  :data="[drawerList]"
-                 @select="selectHandler"></cube-drawer>
+                 @select="selectHandler">
+    </cube-drawer>
 
   </div>
 </template>

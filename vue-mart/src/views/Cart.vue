@@ -60,7 +60,7 @@ export default {
 </script>
 
 
-<style lang="stylus">
+<style lang="scss">
 .good {
   padding: 10px;
   text-align: left;
