@@ -54,9 +54,9 @@ const store = new Vuex.Store({
     },
     // 计算购物车项目总数量
     total: state => {
-      return state.cart.reduce((num, v) => {
+      return state.cart.reduce((num, v) =>
         num += v.cartCount * v.price, 0
-      })
+      )
     }
   }
 })

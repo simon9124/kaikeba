@@ -17,16 +17,16 @@
     <!-- cube-tab-bar -->
     <cube-tab-bar show-slider
                   v-model="selectLabel"
-                  @change="changeHandler"
-                  :data="tabs">
-      <!-- <cube-tab v-for="(item,i) in tabs"
+                  @change="changeHandler">
+      <!-- :data="tabs" -->
+      <cube-tab v-for="(item,i) in tabs"
                 :key="i"
                 :icon="item.icon"
-                :label="item.label">
-        <span>{{item.label}}</span>
+                :label="item.value">
+        <span class="tabs">{{item.label}}</span>
         <span class="badge"
               v-if="showBadge(item.label)">{{cartTotal}}</span>
-      </cube-tab> -->
+      </cube-tab>
     </cube-tab-bar>
   </div>
 </template>
@@ -89,6 +89,9 @@ export default {
 </script>
 
 <style lang="scss">
+* {
+  box-sizing: border-box;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -116,6 +119,28 @@ export default {
   background-color: #edf0f4;
   &-slider {
     top: 0;
+  }
+  .cube-tab {
+    height: 54px;
+    padding: 8px 0;
+    position: relative;
+
+    .tabs {
+      display: block;
+    }
+
+    // 购物车商品数量
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 30px;
+      background: #de3529;
+      color: white;
+      width: 1.4rem;
+      height: 1.4rem;
+      line-height: 1.4rem;
+      border-radius: 50%;
+    }
   }
 }
 
