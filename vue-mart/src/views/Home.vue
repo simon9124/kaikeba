@@ -65,7 +65,7 @@ export default {
       // 小球动画
       ball: {
         // 显示控制
-        show: true,
+        show: false,
         // 目标dom引用
         el: null
       },
@@ -109,9 +109,11 @@ export default {
       const rect = dom.getBoundingClientRect()
       console.log(rect)
       // 2.计算点击坐标
-      const x = rect.left - window.innerWidth / 2
-      const y = -(window.innerHeight - rect.top - 30)
+      const x = -(rect.left - window.innerWidth / 2)
+      const y = (window.innerHeight - rect.top - 30)
       dom.style.display = 'block'
+      dom.style.transition = '0.8s'
+      // dom.style.zIndex = '200'
       dom.style.transform = `translate3d(${x}px, ${y}px, 0)`
     },
     // 动画开始
