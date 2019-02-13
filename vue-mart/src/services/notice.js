@@ -12,10 +12,10 @@ Notice.getInstance = props => {
     }
   }).$mount() // 执行挂载，若不指定选择器，则模板将被渲染为文档之外的元素(不能直接挂载到body上)
 
-  // 必须使用原生dom api把它插入文档中
+  // 必须使用原生dom api把它插入文档中（$el是渲染的真实dom）
   document.body.appendChild(instance.$el)
 
-  // 获取notice实例
+  // 获取notice实例（$children是当前Vue实例中包含的所有组件实例）
   const notice = instance.$children[0]
   return notice
 }
