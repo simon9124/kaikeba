@@ -92,9 +92,16 @@ export default {
     // 显示分类列表
     showCat() {
       this.$refs.drawer.show()
-      // 创建Notice实例
-      const notice = this.$createNotice()
-      notice.add({ content: '请选择分类', duration: 1 })
+
+      // 用cube-ui的createAPI，创建Notice实例
+      // const notice = this.$createNotice()
+      // notice.add({ content: '请选择分类', duration: 1 })
+
+      // 用service里自定义的notice.js，创建Notice实例
+      this.$notice.info({
+        duration: 1,
+        content: '请选择分类'
+      })
     },
     // 选择商品分类
     selectHandler(val) {

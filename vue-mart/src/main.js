@@ -15,12 +15,16 @@ Vue.config.productionTip = false
 import KHeader from './components/Header.vue'
 Vue.component('k-header', KHeader)
 
-// 创建$createNotice API
+// 用cube-ui的createAPI，创建$createNotice API
 import {
   createAPI
 } from 'cube-ui'
 import Notice from './components/Notice.vue'
 createAPI(Vue, Notice, true)
+
+// 全局注册$notice
+import notice from './services/notice'
+Vue.prototype.$notice = notice
 
 // 全局注册axios
 Vue.prototype.$http = axios
