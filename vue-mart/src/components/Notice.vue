@@ -2,15 +2,17 @@
   <div class="alert">
     <div class="alert-container"
          v-for="item in alerts"
-         :key="item.id"></div>
-    <div class="alert-content">
-      {{item.content}}
+         :key="item.id">
+      <div class="alert-content">
+        {{item.content}}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'notice',
   data() {
     return {
       alerts: []
@@ -33,12 +35,32 @@ export default {
       }, duration * 1000);
     },
     // 删除
-    del() {
-
+    del(id) {
+      for (let i = 0; i < this.alerts.length; i++) {
+        const element = this.alerts[i]
+        if (element.id === id) {
+          this.alerts.splice(i, 1)
+          break
+        }
+      }
     }
   },
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+.alert {
+  position: fixed;
+  width: 100%;
+  top: 30px;
+  left: 0;
+  text-align: center;
+
+  .alert-content {
+    display: inline-block;
+    padding: 8px;
+    background: #fff;
+    margin-bottom: 10px;
+  }
+}
 </style>
