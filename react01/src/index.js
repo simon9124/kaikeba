@@ -1,12 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react' // react核心类
+import ReactDOM from 'react-dom' // react-dom
+import App from './App' // App
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render( < h1 > React初始化 < /h1>, document.querySelector('#root'))
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// 动态渲染
+// function tick() {
+//   ReactDOM.render( < h2 > {
+//     new Date().toLocaleTimeString()
+//   } < /h2> , document.querySelector('#root'))
+//   }
+
+//   setInterval(tick, 1000);
+
+ReactDOM.render( < App / > , document.querySelector('#root'))

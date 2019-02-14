@@ -1,28 +1,47 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.png'
+import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+// 函数型组件传递props
+function Welcome1(props) {
+  return <div>Hello, {props.name}</div>
 }
 
-export default App;
+export default class App extends Component {
+  formatName(user) {
+    return user.firstName + ' ' + user.lastName
+  }
+  render() {
+    const name = 'Simon'
+
+    // jsx本身也是表达式
+    const jsx = <p> jsx本身也是表达式 </p>
+
+    return (
+      <div>
+        App组件
+        {/* 表达式 */}
+        <h1> {name} </h1>
+        <p>
+          {this.formatName({
+            firstName: 'Simon',
+            lastName: 'CoCo'
+          })}
+        </p>
+        {/* 属性 */}
+        <img
+          src={logo}
+          style={{
+            width: 100
+          }}
+          className="img"
+          alt=""
+        />
+        {/* jsx也是表达式 */}
+        {jsx}
+        {/* 组件属性传值 */}
+        <Welcome1 name="CoCo" />
+      </div>
+    )
+  }
+}
