@@ -4,7 +4,11 @@ import './App.css'
 
 // 函数型组件传递props
 function Welcome1(props) {
-  return <div>Hello, {props.name}</div>
+  return (
+    <div>
+      Hello, {props.name}, {props.centence}
+    </div>
+  )
 }
 
 export default class App extends Component {
@@ -31,9 +35,7 @@ export default class App extends Component {
 
     // *注意：setState是异步的，在回调函数内更新
     this.setState(
-      // {
-      //   count: this.state.count + 1
-      // },
+      // {count: this.state.count + 1},
       (prevState, prevProps) => ({
         count: prevState.count + 1
       }),
@@ -63,7 +65,7 @@ export default class App extends Component {
       <div>
         App组件
         {/* 表达式 */}
-        <h1> {name} </h1>
+        <h1 style={{ color: 'red' }}> {name} </h1>
         <p>
           {this.formatName({
             firstName: 'Simon',
@@ -74,7 +76,7 @@ export default class App extends Component {
         <img
           src={logo}
           style={{
-            width: 100
+            width: '200px'
           }}
           className="img"
           alt=""
@@ -82,7 +84,7 @@ export default class App extends Component {
         {/* jsx也是表达式 */}
         {jsx}
         {/* 组件属性传值 */}
-        <Welcome1 name="CoCo" />
+        <Welcome1 name="CoCo" centence="how are you?" />
         {/* 使用状态 */}
         <p>{this.state.date.toLocaleTimeString()}</p>
       </div>

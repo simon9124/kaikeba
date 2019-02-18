@@ -4,15 +4,15 @@ function Cart(props) {
   return (
     <table>
       <tbody>
-        {props.data.map(d => (
-          <tr key={d.text}>
-            <td>{d.text}</td>
+        {props.data.map(item => (
+          <tr key={item.text}>
+            <td>{item.text}</td>
             <td>
-              <button onClick={() => props.minusCount(d)}>-</button>
-              {d.count}
-              <button onClick={() => props.addCount(d)}>+</button>
+              <button onClick={() => props.minusCount(item)}>-</button>
+              {item.count}
+              <button onClick={() => props.addCount(item)}>+</button>
             </td>
-            <td>￥{d.price * d.count}</td>
+            <td>￥{item.price * item.count}</td>
           </tr>
         ))}
       </tbody>
@@ -29,7 +29,9 @@ export default class CartSample extends Component {
         { id: 2, text: 'Web全栈2', price: 777 }
       ],
       text: '', // 商品名
-      cart: []
+      cart: [],
+      id: 3,
+      price: 111
     }
 
     // 回调写法1
@@ -38,21 +40,30 @@ export default class CartSample extends Component {
 
   // 回调写法2：用箭头函数(或在事件里用箭头函数)
   addGood() {
-    this.setState(
-      prevState => ({
-        goods: [
-          ...prevState.goods,
-          {
-            id: 3,
-            text: prevState.text,
-            price: 666
-          }
-        ]
-      }),
-      () => {
-        console.log(this.state.goods)
-      }
-    )
+    if (this.state.text) {
+      // 填写商品名 -> 添加商品
+      this.setState(
+        prevState => ({
+          goods: [
+            ...prevState.goods,
+            {
+              id: prevState.id,
+              text: prevState.text,
+              price: prevState.price
+            }
+          ]
+        }),
+        () => {
+          const newId = this.state.id + 1
+          const newPrice = this.state.price + 111
+          this.setState({ id: newId, text: '', price: newPrice })
+          console.log(this.state.goods)
+        }
+      )
+    } else {
+      // 未填写商品名 -> 错误提示
+      alert('请填写商品名称')
+    }
   }
 
   // 添加到购物车
@@ -60,6 +71,7 @@ export default class CartSample extends Component {
     const newCart = [...this.state.cart]
     const idx = newCart.findIndex(c => c.text === good.text)
     const item = newCart[idx]
+    // 如果购物车中不存在 -> 新添加 ; 如果购物车中已存在 -> 数量+1
     if (item) {
       newCart.splice(idx, 1, { ...item, count: item.count + 1 })
     } else {
@@ -68,15 +80,16 @@ export default class CartSample extends Component {
     this.setState({ cart: newCart })
   }
 
-  // +1
+  // 购物车指定商品+1
   addCount = item => {
     const newCart = [...this.state.cart]
     const idx = newCart.findIndex(c => c.text === item.text)
+    // console.log({ ...item })
     newCart.splice(idx, 1, { ...item, count: item.count + 1 })
     this.setState({ cart: newCart })
   }
 
-  // -1
+  // 购物车指定商品-1
   minusCount = item => {
     const newCart = [...this.state.cart]
     const idx = newCart.findIndex(c => c.text === item.text)
@@ -88,6 +101,7 @@ export default class CartSample extends Component {
     this.setState({ cart: newCart })
   }
 
+  // input值变化 -> 绑定给state里的text值
   textChange(e) {
     this.setState({
       text: e.target.value
@@ -96,10 +110,12 @@ export default class CartSample extends Component {
 
   render() {
     const title = this.props.title ? <h1>{this.props.title}</h1> : null
+
     // 循环：将js对象数组转换为jsx数组
     const goods = this.state.goods.map(good => (
       <li key={good.id}>
-        {good.text}
+        {good.text}&nbsp; &nbsp;
+        {good.price}元&nbsp; &nbsp;
         <button onClick={() => this.addToCart(good)}>加购</button>
       </li>
     ))
