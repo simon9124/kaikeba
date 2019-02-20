@@ -76,7 +76,8 @@ export default class CommentList extends Component {
     return (
       <div>
         {this.state.comments.map((c, i) => (
-          <Comment key={i} body={c.body} author={c.author} />
+          // <Comment key={i} body={c.body} author={c.author} />
+          <Comment key={i} {...c} />
           // data={c}
         ))}
       </div>
