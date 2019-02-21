@@ -1,14 +1,17 @@
-import React, { Component, PureComponent } from 'react'
+/* 
+  用setInterval定时器，测试组件数据变化
+*/
 
-// PureComponent
-// class Comment extends PureComponent {
+import React, {
+  Component
+  // PureComponent
+} from 'react'
+
+// 常规组件render -> 数据一直“变化”
+// class Comment extends Component {
 //   render() {
-//     console.log('render')
+//     // console.log('render')
 //     return (
-//       // <div>
-//       //   <p>{this.props.data.body}</p>
-//       //   <p>--------{this.props.data.author}</p>
-//       // </div>
 //       <div>
 //         <p>{this.props.body}</p>
 //         <p>--------{this.props.author}</p>
@@ -17,12 +20,12 @@ import React, { Component, PureComponent } from 'react'
 //   }
 // }
 
-// shouldComponentUpdate
+// 常规组件shouldComponentUpdate -> 数据根据条件“变化”
 // class Comment extends Component {
 //   shouldComponentUpdate(nextProps) {
 //     if (
-//       nextProps.data.body === this.props.data.body &&
-//       nextProps.data.author === this.props.data.author
+//       nextProps.body === this.props.body &&
+//       nextProps.author === this.props.author
 //     ) {
 //       return false
 //     } else {
@@ -33,14 +36,27 @@ import React, { Component, PureComponent } from 'react'
 //     console.log('render')
 //     return (
 //       <div>
-//         <p>{this.props.data.body}</p>
-//         <p>--------{this.props.data.author}</p>
+//         <p>{this.props.body}</p>
+//         <p>--------{this.props.author}</p>
 //       </div>
 //     )
 //   }
 // }
 
-// react.memo纯函数
+// 纯组件PureComponent优化shouldComponentUpdate -> 仅数据变化时发生“变化”（缺点是必须用class形式）
+// class Comment extends PureComponent {
+//   render() {
+//     console.log('render')
+//     return (
+//       <div>
+//         <p>{this.props.body}</p>
+//         <p>--------{this.props.author}</p>
+//       </div>
+//     )
+//   }
+// }
+
+// react.memo纯函数式组件代替PureComponent -> 仅数据变化时发生“变化”（最优）
 const Comment = React.memo(({ body, author }) => {
   console.log('render')
 
