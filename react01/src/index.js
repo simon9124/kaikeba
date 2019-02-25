@@ -10,14 +10,24 @@ import ReactDOM from 'react-dom' // react-dom
 // import AntdTest from './components/AntdTest'
 // import KFormSample from './components/KFormSample'
 
+// 具名导入Provider
+import { Provider } from 'react-redux'
+
 // store
 import store from './store'
 import ReduxTest from './components/ReduxTest'
-function render() {
-  ReactDOM.render(<ReduxTest />, document.querySelector('#root'))
-}
-render()
-store.subscribe(render)
+// function render() {
+//   ReactDOM.render(<ReduxTest />, document.querySelector('#root'))
+// }
+// render()
+// store.subscribe(render)
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ReduxTest />
+  </Provider>,
+  document.querySelector('#root')
+)
 
 // ReactDOM.render(<h1> React初始化 </h1>, document.querySelector('#root'))
 // ReactDOM.render(<App />, document.querySelector('#root'))
