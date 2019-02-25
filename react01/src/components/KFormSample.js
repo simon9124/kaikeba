@@ -3,6 +3,7 @@
 */
 
 import React, { Component } from 'react'
+import { Icon } from 'antd'
 
 // 高阶组件：包装用户表担，增加数据管理能力、校验
 function kFormCreate(Comp) {
@@ -79,6 +80,8 @@ function kFormCreate(Comp) {
             // 判断控件是否获得焦点
             onFocus: this.handleFocus
           })}
+
+          {/* 错误信息显示在FormItem组件中 */}
           {/* {this.state[field + 'Message'] && (
             <p style={{ color: 'red' }}>{this.state[field + 'Message']}</p>
           )} */}
@@ -94,9 +97,11 @@ function kFormCreate(Comp) {
       })
     }
 
-    isFieldTouched = field => {
-      return !!this.state[field + 'Focus']
-    }
+    // 判断组件是否被用户点击过
+    isFieldTouched = field => !!this.state[field + 'Focus']
+
+    // 获取对应的错误信息
+    getFieldError = field => this.state[field + 'Message']
 
     render() {
       return (
@@ -105,6 +110,8 @@ function kFormCreate(Comp) {
           getFieldDec={this.getFieldDec}
           value={this.state}
           validate={this.validate}
+          isFieldTouched={this.isFieldTouched}
+          getFieldError={this.getFieldError}
         />
       )
     }
@@ -124,6 +131,18 @@ class FormItem extends Component {
   }
 }
 
+class KInput extends Component {
+  render() {
+    return (
+      <div>
+        {/* 前缀图标 */}
+        {this.props.prefix}
+        {/* 父组件传来的属性展开 */}
+        <input {...this.props} />
+      </div>
+    )
+  }
+}
 @kFormCreate
 class KFormSample extends Component {
   // 表单提交
@@ -140,23 +159,36 @@ class KFormSample extends Component {
   }
 
   render() {
-    const { getFieldDec } = this.props
+    const { getFieldDec, isFieldTouched, getFieldError } = this.props
+    const userNameError = isFieldTouched('uname') && getFieldError('uname')
+    const passwordError = isFieldTouched('pwd') && getFieldError('pwd')
+
     return (
       <div>
-        {getFieldDec(
-          'uname',
-          {
-            rules: [{ required: true, message: '请填写用户名!' }]
-          },
-          <input type="text" />
-        )}
-        {getFieldDec(
-          'pwd',
-          {
-            rules: [{ required: true, message: '请填写密码!' }]
-          },
-          <input type="password" />
-        )}
+        <FormItem
+          validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''}
+        >
+          {getFieldDec(
+            'uname',
+            {
+              rules: [{ required: true, message: '请填写用户名!' }]
+            },
+            <KInput type="text" prefix={<Icon type="user" />} />
+          )}
+        </FormItem>
+        <FormItem
+          validateStatus={passwordError ? 'error' : ''}
+          help={passwordError || ''}
+        >
+          {getFieldDec(
+            'pwd',
+            {
+              rules: [{ required: true, message: '请填写密码!' }]
+            },
+            <KInput type="password" prefix={<Icon type="lock" />} />
+          )}
+        </FormItem>
 
         {/* 作为getFieldDec方法的第三个参数 */}
         {/* <input type="text" /> */}
