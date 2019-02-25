@@ -122,6 +122,7 @@ class FormItem extends Component {
   render() {
     return (
       <div className="formItem">
+        {/* children可以是任意合法的JS表达式，包括函数 */}
         {this.props.children}
         {this.props.validateStatus === 'error' && (
           <p style={{ color: 'red' }}>{this.props.help}</p>

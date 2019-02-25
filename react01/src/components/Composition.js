@@ -30,11 +30,28 @@ function WelcomeDiaglog() {
   )
 }
 
+// 模拟接口
+const api = {
+  getUser: () => ({ name: 'jerry', age: 20 })
+}
+function Fetcher(props) {
+  let user = api[props.name]()
+  return props.children(user)
+}
+
 export default class Composition extends Component {
   render() {
     return (
       <div>
         <WelcomeDiaglog />
+        {/* children内容可以是任意表达式，包括函数 */}
+        <Fetcher name="getUser">
+          {({ name, age }) => (
+            <p>
+              {name}-{age}
+            </p>
+          )}
+        </Fetcher>
       </div>
     )
   }
