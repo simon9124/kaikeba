@@ -39,6 +39,42 @@ function Fetcher(props) {
   return props.children(user)
 }
 
+// 过滤掉非<p>标签
+function FilterP(props) {
+  return (
+    <div>
+      {/* React.Children提供若干操作嵌套内容的帮助方法 */}
+      {React.Children.map(props.children, child => {
+        // children是虚拟对象vdom
+        console.log(child)
+        if (child.type !== 'p') {
+          return
+        }
+        return child
+      })}
+    </div>
+  )
+}
+
+function RadioGroup(props) {
+  return (
+    <div>
+      {React.Children.map(props.children, child => {
+        return React.cloneElement(child, { name: props.name })
+      })}
+    </div>
+  )
+}
+
+function Radio({ children, ...rest }) {
+  return (
+    <label>
+      <input type="radio" {...rest} />
+      {children}
+    </label>
+  )
+}
+
 export default class Composition extends Component {
   render() {
     return (
@@ -52,6 +88,21 @@ export default class Composition extends Component {
             </p>
           )}
         </Fetcher>
+
+        {/* 操作children */}
+        <FilterP>
+          <h3>React</h3>
+          <p>React很不错</p>
+          <h3>Vue</h3>
+          <p>Vue很不错</p>
+        </FilterP>
+
+        {/* 编辑children */}
+        <RadioGroup name="mvvm">
+          <Radio value="vue">Vue</Radio>
+          <Radio value="react">React</Radio>
+          <Radio value="angular">Angular</Radio>
+        </RadioGroup>
       </div>
     )
   }

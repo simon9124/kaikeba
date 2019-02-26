@@ -14,7 +14,7 @@ import ReactDOM from 'react-dom' // react-dom
 import { Provider } from 'react-redux'
 
 // store
-import store from './store'
+import store from './store/index.js'
 import ReduxTest from './components/ReduxTest'
 // function render() {
 //   ReactDOM.render(<ReduxTest />, document.querySelector('#root'))

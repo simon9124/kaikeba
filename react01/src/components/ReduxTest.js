@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
 // import store from '../store'
+import { add, minus, asyncAdd } from '../store/counter.redux'
 import { connect } from 'react-redux'
 
 // 装饰器写法
 @connect(
   // 状态映射
-  state => ({ num: state }),
+  state => ({ num: state.counter }),
   // dispatch映射
-  {
-    add: () => ({ type: 'add' }),
-    minus: () => ({ type: 'minus' })
-  }
+  { add, minus, asyncAdd }
+  // {
+  //   add: () => ({ type: 'add' }),
+  //   minus: () => ({ type: 'minus' }),
+  //   asyncAdd: () => dispatch => {
+  //     // 模拟异步操作
+  //     setTimeout(() => {
+  //       dispatch({ type: 'add' })
+  //     }, 1000)
+  //   }
+  // }
 )
 class ReduxTest extends Component {
   render() {
@@ -39,6 +47,7 @@ class ReduxTest extends Component {
         <p>{this.props.num}</p>
         <button onClick={() => this.props.minus()}>-</button>
         <button onClick={() => this.props.add()}>+</button>
+        <button onClick={() => this.props.asyncAdd()}>asyncAdd</button>
       </div>
     )
   }
