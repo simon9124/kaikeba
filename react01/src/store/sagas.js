@@ -1,4 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
+// call：在work saga中调用真正的接口的时候，用call调用
+// put：操作有了结果以后，用put派发action并更新状态
+// takeEvery：事件监听action，action来了以后调用指定的work saga
 
 const api = {
   login() {
