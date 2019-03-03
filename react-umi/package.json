@@ -1,0 +1,4 @@
+{
+  "dev": "umi dev",
+  "build": "umi build"
+}
