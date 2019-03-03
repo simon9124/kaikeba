@@ -4,41 +4,55 @@ import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/_renderRoutes';
 
 
-let Router = DefaultRouter;
+let Router = require('dva/router').routerRedux.ConnectedRouter;
 
 let routes = [
   {
     "path": "/",
-    "exact": true,
-    "component": require('../index.js').default
+    "component": require('../index').default,
+    "exact": true
+  },
+  {
+    "path": "/goods",
+    "component": require('../goods').default,
+    "exact": true
   },
   {
     "path": "/about",
-    "exact": true,
-    "component": require('../about.js').default
+    "component": require('../about').default,
+    "Routes": [require('../../routes/PrivateRoute.js').default],
+    "exact": true
   },
   {
     "path": "/users",
-    "exact": false,
-    "component": require('../users/_layout.js').default,
+    "component": require('../users/_layout').default,
     "routes": [
       {
-        "path": "/users",
-        "exact": true,
-        "component": require('../users/index.js').default
+        "path": "/users/",
+        "component": require('../users/index').default,
+        "exact": true
       },
       {
         "path": "/users/:id",
-        "exact": true,
-        "component": require('../users/$id.js').default
+        "component": require('../users/$id').default,
+        "exact": true
       },
       {
-        "component": () => React.createElement(require('C:/nodejs/node_global/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
+        "component": () => React.createElement(require('C:/nodejs/node_global/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: true })
       }
     ]
   },
   {
-    "component": () => React.createElement(require('C:/nodejs/node_global/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
+    "path": "/login",
+    "component": require('../login').default,
+    "exact": true
+  },
+  {
+    "component": require('../notfound').default,
+    "exact": true
+  },
+  {
+    "component": () => React.createElement(require('C:/nodejs/node_global/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: true })
   }
 ];
 window.g_routes = routes;

@@ -1,4 +1,11 @@
 {
   "dev": "umi dev",
-  "build": "umi build"
+  "build": "umi build",
+  "dependencies": {
+    "antd": "^3.13.6",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "umi-plugin-react": "^1.5.2"
+  }
 }

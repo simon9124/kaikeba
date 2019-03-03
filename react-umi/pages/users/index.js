@@ -1,5 +1,5 @@
 import styles from './index.css'
-import Link from 'umi/link'
+// import Link from 'umi/link'
 import router from 'umi/router'
 
 export default function() {
