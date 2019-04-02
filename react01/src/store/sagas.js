@@ -25,7 +25,7 @@ const api = {
   }
 }
 
-// work saga
+// worker saga
 function* login(action) {
   try {
     const result = yield call(api.login, { name: '在这里传参' })
