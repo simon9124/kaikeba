@@ -5,14 +5,25 @@ module.exports = {
   entry: './index.js', // 入口文件
   module: {
     rules: [
+      // {
+      //   test: /\.(png|jpe?g|gif)$/,
+      //   use: {
+      //     loader: 'file-loader',
+      //     options: {
+      //       // name: '[name].[ext]' // [name]是源文件名称，[ext]是原模块后缀名
+      //       name: '[name]_[hash].[ext]',
+      //       outputPath: 'pics/' // 存放目录
+      //     }
+      //   }
+      // }
       {
         test: /\.(png|jpe?g|gif)$/,
         use: {
-          loader: 'file-loader',
+          loader: 'url-loader ',
           options: {
-            // name: '[name].[ext]' // [name]是源文件名称，[ext]是原模块后缀名
             name: '[name]_[hash].[ext]',
-            outputPath: 'pics/' // 存放目录
+            outputPath: 'pics/',
+            limit: 2048 // ⼩于2048才转换成base64，否则等效与file-loader（此时url-loader依赖于file-loader）
           }
         }
       }

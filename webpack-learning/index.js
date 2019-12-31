@@ -15,3 +15,4 @@ var pic = require('./userAvatar.jpg') // 默认不支持 -> 用loader处理
 console.log(pic)
 
 // file-loader - 静态资源处理（jpg/jpeg/png/gif/svg/webp/csv/excel...）
+// url-loader - 转换成base64位码
