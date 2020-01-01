@@ -4,6 +4,9 @@
 import a from './a'
 import b from './b'
 
+import './index.css'
+import './index.scss'
+
 // var a = require('./a')
 // var b = require('./b')
 
@@ -16,3 +19,4 @@ console.log(pic)
 
 // file-loader - 静态资源处理（jpg/jpeg/png/gif/svg/webp/csv/excel...）
 // url-loader - 转换成base64位码
+// sass-loader & css-loader & style-loader - 样式文件处理
