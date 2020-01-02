@@ -8,6 +8,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^9.7.3",
     "css-loader": "^3.4.0",
     "file-loader": "^5.0.2",
     "node-sass": "^4.13.0",
