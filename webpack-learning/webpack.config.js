@@ -34,6 +34,10 @@ module.exports = {
       }
     ]
   }, // loader
+  devServer: {
+    port: '3001',
+    contentBase: 'dist'
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
