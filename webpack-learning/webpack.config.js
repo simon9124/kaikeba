@@ -36,7 +36,8 @@ module.exports = {
   }, // loader
   devServer: {
     port: '3001',
-    contentBase: 'dist'
+    contentBase: 'dist',
+    open: true
   },
   plugins: [
     new CleanWebpackPlugin(),

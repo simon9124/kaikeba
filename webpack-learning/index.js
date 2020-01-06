@@ -18,7 +18,7 @@ var pic = require('./userAvatar.jpg') // 默认不支持 -> 用loader处理
 console.log(pic)
 
 /* devServer */
-// 自动打开html文件
+// webpack-dev-server - 启动服务器
 
 /* loaders */
 // file-loader - 静态资源处理（jpg/jpeg/png/gif/svg/webp/csv/excel...）
