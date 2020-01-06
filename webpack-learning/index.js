@@ -15,7 +15,7 @@ b()
 
 // webpack默认值认识js模块，而且支持模块语法
 var pic = require('./userAvatar.jpg') // 默认不支持 -> 用loader处理
-console.log(pic)
+consoe.log(pic)
 
 /* devServer */
 // webpack-dev-server - 启动服务器
@@ -29,3 +29,4 @@ console.log(pic)
 /* plugin */
 // HtmlWebpackPlugin - 打包后，生成html文件
 // clean-webpack-plugin - 打包前，自动清理dist文件夹
+// mini-css-extract-plugin - 抽离css文件

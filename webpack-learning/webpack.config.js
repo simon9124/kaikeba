@@ -1,7 +1,8 @@
 // 引入外部模块
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin') //自动生成html
+const { CleanWebpackPlugin } = require('clean-webpack-plugin') //自动清理dist
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 抽离css
 
 module.exports = {
   entry: './index.js', // 入口文件
@@ -20,16 +21,19 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.scss$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          { loader: 'style-loader' }, // 将 JS 字符串生成为 style 节点
-          { loader: 'css-loader' }, // 将 CSS 转化成 CommonJS 模块
-          { loader: 'postcss-loader' }, // 自动添加浏览器前缀
-          { loader: 'sass-loader' } // 将 Sass 编译成 CSS
+          // 'style-loader', // 将 JS 字符串生成为 style 节点
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../', // 公共路径
+              hmr: process.env.NODE_ENV === 'development' //开发环境配置热更新
+            }
+          },
+          'css-loader', // 将 CSS 转化成 CommonJS 模块
+          'postcss-loader', // 自动添加浏览器前缀
+          'sass-loader' // 将 Sass 编译成 CSS
         ]
       }
     ]
@@ -40,6 +44,10 @@ module.exports = {
     open: true
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'html 模板',
