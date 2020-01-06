@@ -24,3 +24,5 @@ console.log(pic)
 // postcss-loader  - 自动添加不同浏览器的css3前缀
 
 /* plugin */
+// HtmlWebpackPlugin - 打包后，生成html文件
+// clean-webpack-plugin - 打包前，自动清理dist文件夹

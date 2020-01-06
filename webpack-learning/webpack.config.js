@@ -1,5 +1,7 @@
 // 引入外部模块
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: './index.js', // 入口文件
@@ -32,6 +34,14 @@ module.exports = {
       }
     ]
   }, // loader
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'html 模板',
+      // filename: 'index_[hash].html',
+      template: './index.html'
+    })
+  ], //plugins
   output: {
     // filename: 'bundle.js', // 打包后的文件名（默认为main.js）
     path: path.resolve(__dirname, 'dist') // 绝对路径
