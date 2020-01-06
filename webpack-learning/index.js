@@ -30,3 +30,9 @@ consoe.log(pic)
 // HtmlWebpackPlugin - 打包后，生成html文件
 // clean-webpack-plugin - 打包前，自动清理dist文件夹
 // mini-css-extract-plugin - 抽离css文件
+
+/* devServer */
+// 开启服务器
+
+/* sourceMap */
+// 源代码与打包后的对应关系，dev模式自动开启

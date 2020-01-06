@@ -30,7 +30,7 @@ module.exports = {
               publicPath: '../', // 公共路径
               hmr: process.env.NODE_ENV === 'development' //开发环境配置热更新
             }
-          },
+          }, //抽离css时，就不用style-loader了
           'css-loader', // 将 CSS 转化成 CommonJS 模块
           'postcss-loader', // 自动添加浏览器前缀
           'sass-loader' // 将 Sass 编译成 CSS
@@ -39,10 +39,10 @@ module.exports = {
     ]
   }, // loader
   devServer: {
-    port: '3001',
-    contentBase: 'dist',
-    open: true
-  },
+    port: '3001', //端口号
+    contentBase: './dist', //启动目录
+    open: true //自动打开浏览器
+  }, // 开启服务器
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -58,5 +58,7 @@ module.exports = {
   output: {
     // filename: 'bundle.js', // 打包后的文件名（默认为main.js）
     path: path.resolve(__dirname, 'dist') // 绝对路径
-  }
+  },
+  devtool: 'cheap-module-eval-source-map', // https://webpack.js.org/configuration/devtool/#root
+  mode: 'development'
 }
