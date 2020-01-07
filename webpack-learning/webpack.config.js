@@ -40,8 +40,13 @@ module.exports = {
   }, // loader
   devServer: {
     port: '3001', //端口号
-    contentBase: './dist', //启动目录
-    open: true //自动打开浏览器
+    contentBase: './dist', // 启动目录
+    open: true, //自动打开浏览器
+    proxy: {
+      '/api': {
+        target: 'http://localhost:9092'
+      }
+    } //服务器代理
   }, // 开启服务器
   plugins: [
     new MiniCssExtractPlugin({

@@ -15,7 +15,14 @@ b()
 
 // webpack默认值认识js模块，而且支持模块语法
 var pic = require('./userAvatar.jpg') // 默认不支持 -> 用loader处理
-consoe.log(pic)
+console.log(pic)
+
+// axios默认会有跨域问题，需要配置proxy服务器代理，用"/api"代替proxy里target的值
+import axios from 'axios'
+// axios.get('http://localhost:9092/api/info').then(res => {
+axios.get('/api/info').then(res => {
+  console.log(res)
+})
 
 /* devServer */
 // webpack-dev-server - 启动服务器
@@ -32,7 +39,9 @@ consoe.log(pic)
 // mini-css-extract-plugin - 抽离css文件
 
 /* devServer */
-// 开启服务器
+// contentBase - 启动目录
+// open - 自动在浏览器打开
+// proxy - 服务器代理
 
 /* sourceMap */
 // 源代码与打包后的对应关系，dev模式自动开启
