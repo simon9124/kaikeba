@@ -24,13 +24,12 @@ console.log(pic)
 //   console.log(res)
 // })
 
-
 // css的hmr热模块替换（需非抽离css）
 var btn = document.createElement('button')
 btn.innerHTML = '新增'
 document.body.appendChild(btn)
 
-btn.onclick = function () {
+btn.onclick = function() {
   var div = document.createElement('div')
   console.log('1')
   div.innerHTML = 'item'
@@ -38,17 +37,45 @@ btn.onclick = function () {
 }
 
 // js的hmr热模块替换
-import counter from "./counter";
-import number from "./number";
-counter();
-number();
+import counter from './counter'
+import number from './number'
+counter()
+number()
 if (module.hot) {
-  module.hot.accept("./number", function () {
-    document.body.removeChild(document.getElementById("number"));
-    number();
-  });
+  module.hot.accept('./number', function() {
+    document.body.removeChild(document.getElementById('number'))
+    number()
+  })
 }
 
+// babel将ES6+转换为ES5
+import '@babel/polyfill' // polyfill和transform-runtime二选一
+
+const arr = [new Promise(() => {}), new Promise(() => {})]
+arr.map(item => {
+  console.log(item)
+})
+
+// 配置React打包环境
+// import React, { Component } from 'react'
+// import ReactDom from 'react-dom'
+// class App extends Component {
+//   render() {
+//     return <div>hello world</div>
+//   }
+// }
+// ReactDom.render(<App />, document.getElementById('app'))
+
+// 配置vue打包环境
+import Vue from 'vue'
+import Todo from './todo.vue'
+new Vue({
+  el: '#app',
+  data: {
+    title: '开课吧VUE'
+  },
+  render: h => Todo
+})
 
 /* devServer */
 // webpack-dev-server - 启动服务器
@@ -74,3 +101,15 @@ if (module.hot) {
 
 /* sourceMap */
 // 源代码与打包后的对应关系，dev模式自动开启
+
+/* babel */
+// 将es6(或更高) 语法转成es5，以适配浏览器
+// babel-loader、@babel/core、@babel/preset-env
+// @babel/polyfill - 按需加载（全局变量），适合做项目
+// @babel/plugin-transform-runtime - 按需加载（闭包），适合组件库/工具库
+
+/* 集成react */
+// react、react-dom、@babel/preset-react
+
+/* 集成vue */
+// vue、vue-loader、vue-template-compiler

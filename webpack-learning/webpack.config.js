@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin') //自动生成html
 const { CleanWebpackPlugin } = require('clean-webpack-plugin') //自动清理dist
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 抽离css
 const webpack = require('webpack') // 启动hmr
+const VueLoaderPlugin = require('vue-loader/lib/plugin') // vue-loader
 
 module.exports = {
   entry: './index.js', // 入口文件
@@ -20,10 +21,11 @@ module.exports = {
             limit: 2048 // ⼩于limit才转换成base64，否则等效与file-loader（此时url-loader依赖于file-loader）
           }
         }
-      },
+      }, // 图片资源
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
+          'vue-style-loader', // vue里的样式文件
           'style-loader', // 将 JS 字符串生成为 style 节点
           // {
           //   loader: MiniCssExtractPlugin.loader,
@@ -36,7 +38,17 @@ module.exports = {
           'postcss-loader', // 自动添加浏览器前缀
           'sass-loader' // 将 Sass 编译成 CSS
         ]
-      }
+      }, // 样式文件
+      {
+        test: /\.js$/,
+        exclude: /node_modules/, // 排除在外
+        loader: 'babel-loader' // 将es6(+)转成es5
+        // options会自动从.babelrc文件中获取
+      }, // js文件
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      } // vue文件
     ]
   }, // loader
   devServer: {
@@ -62,10 +74,11 @@ module.exports = {
       // filename: 'index_[hash].html',
       template: './index.html'
     }), //自动生成html
-    new webpack.HotModuleReplacementPlugin() // 启动hm
+    new webpack.HotModuleReplacementPlugin(), // 启动hm
+    new VueLoaderPlugin() // vue-loader
   ], //plugins
   output: {
-    // filename: 'bundle.js', // 打包后的文件名（默认为main.js）
+    filename: 'bundle.js', // 打包后的文件名（默认为main.js）
     path: path.resolve(__dirname, 'dist') // 绝对路径
   },
   devtool: 'cheap-module-eval-source-map', // https://webpack.js.org/configuration/devtool/#root
