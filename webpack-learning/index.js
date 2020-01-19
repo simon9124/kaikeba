@@ -88,9 +88,6 @@ btn.addEventListener(
   false
 )
 
-/* devServer */
-// webpack-dev-server - 启动服务器
-
 /* loaders */
 // file-loader - 静态资源处理（jpg/jpeg/png/gif/svg/webp/csv/excel...）
 // url-loader - 转换成base64位码
