@@ -41,7 +41,7 @@ module.exports = {
       }, // 样式文件
       {
         test: /\.js$/,
-        exclude: /node_modules/, // 排除在外
+        exclude: /node_modules/, // 设置不解析的目录 -> 提高编译速度
         loader: 'babel-loader' // 将es6(+)转成es5
         // options会自动从.babelrc文件中获取
       }, // js文件
@@ -74,7 +74,7 @@ module.exports = {
       // filename: 'index_[hash].html',
       template: './index.html'
     }), //自动生成html
-    new webpack.HotModuleReplacementPlugin(), // 启动hm
+    new webpack.HotModuleReplacementPlugin(), // 启动hmr
     new VueLoaderPlugin() // vue-loader
   ], //plugins
   output: {
@@ -82,5 +82,5 @@ module.exports = {
     path: path.resolve(__dirname, 'dist') // 绝对路径
   },
   devtool: 'cheap-module-eval-source-map', // https://webpack.js.org/configuration/devtool/#root
-  mode: 'development'
+  mode: 'development' // development or production
 }

@@ -31,7 +31,7 @@ document.body.appendChild(btn)
 
 btn.onclick = function() {
   var div = document.createElement('div')
-  console.log('1')
+  // console.log('1')
   div.innerHTML = 'item'
   document.body.appendChild(div)
 }
@@ -61,7 +61,7 @@ arr.map(item => {
 // import ReactDom from 'react-dom'
 // class App extends Component {
 //   render() {
-//     return <div>hello world</div>
+//     return <div>react</div>
 //   }
 // }
 // ReactDom.render(<App />, document.getElementById('app'))
@@ -74,8 +74,19 @@ new Vue({
   data: {
     title: '开课吧VUE'
   },
-  render: h => Todo
+  render: h => h(Todo)
 })
+
+// 懒加载
+btn.addEventListener(
+  'click',
+  () => {
+    import('./lazy').then(res => {
+      console.log(res.default)
+    })
+  },
+  false
+)
 
 /* devServer */
 // webpack-dev-server - 启动服务器
@@ -113,3 +124,6 @@ new Vue({
 
 /* 集成vue */
 // vue、vue-loader、vue-template-compiler
+
+/* 懒加载 */
+// @babel/plugin-syntax-dynamic-import -D

@@ -11,20 +11,20 @@
         },
         "useBuiltIns": "usage" // 按需注⼊
       }
-      // polyfill
-    ],
+    ], // polyfill
     "@babel/preset-react" // react
+  ],
+  "plugins": [
+    // [
+    //   "@babel/plugin-transform-runtime",
+    //   {
+    //     "absoluteRuntime": false,
+    //     "corejs": 2,
+    //     "helpers": true,
+    //     "regenerator": true,
+    //     "useESModules": false
+    //   }
+    // ], // transform-runtime
+    "@babel/plugin-syntax-dynamic-import"
   ]
-  // "plugins": [
-  //   [
-  //     "@babel/plugin-transform-runtime",
-  //     {
-  //       "absoluteRuntime": false,
-  //       "corejs": 2,
-  //       "helpers": true,
-  //       "regenerator": true,
-  //       "useESModules": false
-  //     }
-  //   ]
-  // ] // transform-runtime
 } // polyfill和transform-runtime二选一
