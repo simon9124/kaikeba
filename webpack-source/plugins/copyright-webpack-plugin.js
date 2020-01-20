@@ -11,9 +11,7 @@ class CopyrightWebpackPlugin {
     compiler.hooks.compile.tap('CopyrightWebpackPlugin', compilation => {
       console.log('触发compile钩子')
     })
-
     debugger
-
     /* emit钩子：资源文件已经打包到目路时触发 */
     compiler.hooks.emit.tapAsync(
       'CopyrightWebpackPlugin',
