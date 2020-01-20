@@ -20,4 +20,4 @@
 
 # script - debug
 
-- debugger
+- debugger：nodejs 断点查错
